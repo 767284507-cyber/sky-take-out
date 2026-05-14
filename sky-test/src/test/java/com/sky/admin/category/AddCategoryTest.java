@@ -21,13 +21,14 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 
 public class AddCategoryTest extends BaseTest {
     private static String filePath = System.getProperty("user.dir") + "/src/test/resources/testdata/employee.xlsx";
 
     @BeforeClass
     public void initData() {
-        Connection con=null;
+        Connection con = null;
         PreparedStatement ps = null;
         try { // 清理可能存在的测试数据
             con = DBUtils.getCon();
@@ -81,7 +82,7 @@ public class AddCategoryTest extends BaseTest {
                 .log().all() //.log().body()  // 打印响应信息
                 .assertThat().statusCode(200)
                 .assertThat().body("code", equalTo(Integer.parseInt(provider.get("resultcode"))))
-                .assertThat().body("msg", equalTo(provider.get("msg")));
+                .assertThat().body("msg", provider.get("msg") == null || provider.get("msg").isEmpty() ? nullValue() : equalTo(provider.get("msg")));
 
 
         if (Integer.parseInt(provider.get("resultcode")) == 1) {
@@ -98,10 +99,10 @@ public class AddCategoryTest extends BaseTest {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     log.info("数据库查询到数据");
-                    Assert.assertEquals(rs.getInt(1),Integer.parseInt(provider.get("type")), "分类类型匹配");
-                    Assert.assertEquals(rs.getString(2),provider.get("name"), "分类名称匹配");
-                    Assert.assertEquals(rs.getInt(3),Integer.parseInt(provider.get("sort")), "排序匹配");
-                    Assert.assertEquals(rs.getInt(4),0, "初始添加状态都是0-禁用");
+                    Assert.assertEquals(rs.getInt(1), Integer.parseInt(provider.get("type")), "分类类型匹配");
+                    Assert.assertEquals(rs.getString(2), provider.get("name"), "分类名称匹配");
+                    Assert.assertEquals(rs.getInt(3), Integer.parseInt(provider.get("sort")), "排序匹配");
+                    Assert.assertEquals(rs.getInt(4), 0, "初始添加状态都是0-禁用");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
