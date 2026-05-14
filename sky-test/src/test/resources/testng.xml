@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="testng-results.xsl"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--表示这个文件去写的时候必须遵守TestNG的一些语法-->
+<suite name="sky-take-out(项目名称）" verbose="1" parallel="false">
+    <!--    <test name="sky-server">-->
+    <!--        <classes>-->
+    <!--            <class name="com.api.register.RegisterTest"/>-->
+    <!--        </classes>-->
+    <!--    </test>-->
+
+    <test name="sky-test-admin（模块名称）">
+        <!--   每组参数对应一个独立的 <test>，会执行多次测试，要想允许多套测试数据，要组多个test     -->
+        <!--        第一组参数-->
+        <parameter name="username" value="admin"></parameter>
+        <parameter name="password" value="123456"></parameter>
+
+        <classes>
+            <class name="com.sky.admin.testng1"/>
+        </classes>
+        <!--        <classes>-->
+        <!--            <class name="com.api.login.TestLogin"/>-->
+        <!--        </classes>-->
+    </test>
+
+    <test name="sky-test-yangzx">
+        <!--   每组参数对应一个独立的 <test>，会执行多次测试，要想允许多套测试数据，要组多个test     -->
+        <!--        第二组参数，后面一次类推-->
+        <parameter name="username" value="yangzx"></parameter>
+        <parameter name="password" value="123456"></parameter>
+        <classes>
+            <class name="com.sky.admin.testng1"/>
+        </classes>
+    </test>
+
+    <test name="sky-test">
+        <classes>
+            <class name="com.sky.admin.testng2"/>
+            <class name="com.sky.admin.testng3"/>
+            <class name="com.sky.admin.EmployeeLoginTest"/>
+            <class name="com.sky.admin.AddEmployeeTest"/>
+            <class name="com.sky.admin.UpdateEmployeeTest"/>
+            <class name="com.sky.admin.QueryEmployeeTest"/>
+            <class name="com.sky.admin.StartOrStopEmpTest"/>
+            <class name="com.sky.admin.EmployeeLogoutTest"/>
+            <class name="com.sky.admin.category.AddCategoryTest"/>
+
+        </classes>
+    </test>
+
+</suite>
