@@ -44,6 +44,9 @@
             <class name="com.sky.admin.StartOrStopEmpTest"/>
             <class name="com.sky.admin.EmployeeLogoutTest"/>
             <class name="com.sky.admin.category.AddCategoryTest"/>
+            <class name="com.sky.ui.FirstPlaywright"/>
+            <class name="com.sky.ui.FirstSelenium"/>
+
 
         </classes>
     </test>
